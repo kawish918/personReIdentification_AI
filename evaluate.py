@@ -13,7 +13,7 @@ from models.efficientnet_embedder import EfficientNetEmbedder
 from utils.dataset import Market1501Dataset
 import config
 
-# --- Transforms ---
+# Transforms 
 transform = transforms.Compose([
     transforms.Resize(config.IMG_SIZE),
     transforms.ToTensor(),
@@ -21,19 +21,19 @@ transform = transforms.Compose([
                          [0.229, 0.224, 0.225])
 ])
 
-# --- Load Gallery and Query Sets ---
+# Load Gallery and Query Sets 
 gallery_set = Market1501Dataset(root=config.DATA_DIR + "bounding_box_test", transform=transform)
 query_set = Market1501Dataset(root=config.DATA_DIR + "query", transform=transform)
 
 gallery_loader = DataLoader(gallery_set, batch_size=config.BATCH_SIZE, shuffle=False)
 query_loader = DataLoader(query_set, batch_size=1, shuffle=False)
 
-# --- Load Model ---
+# Load Model 
 model = EfficientNetEmbedder(embed_dim=config.EMBED_DIM).to(config.DEVICE)
 model.load_state_dict(torch.load("best_model.pth"))
 model.eval()
 
-# --- Extract gallery embeddings ---
+# Extract gallery embeddings
 def extract_embeddings(loader):
     all_embeddings = []
     all_labels = []
@@ -48,7 +48,7 @@ def extract_embeddings(loader):
 gallery_embeddings, gallery_labels = extract_embeddings(gallery_loader)
 query_embeddings, query_labels = extract_embeddings(query_loader)
 
-# --- Evaluation Metrics ---
+# Evaluation Metrics 
 def evaluate_rank_map(query_embs, query_labels, gallery_embs, gallery_labels, top_k=(1, 5, 10)):
     sims = cosine_similarity(query_embs, gallery_embs)
     num_queries = query_embs.shape[0]
@@ -79,11 +79,11 @@ def evaluate_rank_map(query_embs, query_labels, gallery_embs, gallery_labels, to
 
     return rank_k_acc, mean_ap
 
-# --- Run Evaluation ---
+# Run Evaluation 
 rank_acc, mean_ap = evaluate_rank_map(query_embeddings, query_labels, gallery_embeddings, gallery_labels)
 
-# --- Print Results ---
-print("\n📊 Evaluation Results:")
+# Print Results 
+print("\nEvaluation Results:")
 for k, v in rank_acc.items():
     print(f"{k} Accuracy: {v*100:.2f}%")
 print(f"Mean Average Precision (mAP): {mean_ap*100:.2f}%")

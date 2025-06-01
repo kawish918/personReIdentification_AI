@@ -1,3 +1,4 @@
+#-----------------NOT RELATED CURRENTLY-----------------#
 #%%
 # query.py
 import os
@@ -14,7 +15,7 @@ from tqdm import tqdm
 # Configuration
 GALLERY_DIR = os.path.join(config.DATA_DIR, "bounding_box_test")
 TOP_K = 5
-MODEL_PATH = "model_epoch_25.pth"
+MODEL_PATH = "best_model.pth"
 DEVICE = config.DEVICE
 
 # Load model

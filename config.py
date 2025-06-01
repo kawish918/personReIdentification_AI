@@ -1,6 +1,6 @@
 # config.py
 BATCH_SIZE = 32
-EPOCHS = 25
+EPOCHS = 30
 LR = 3e-4
 IMG_SIZE = (256, 128)
 EMBED_DIM = 512

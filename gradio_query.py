@@ -70,7 +70,7 @@ gr.Interface(
     fn=find_top_k_matches,
     inputs=gr.Image(type="pil", label="Upload Query Image"),
     outputs=gr.Gallery(label="Results", columns=[TOP_K + 1], height="auto"),
-    title="Person Re-Identification Demo",
+    title="Person Re-Identification",
     description="Upload a person image and see the top-k similar images from the gallery."
 ).launch()
 
