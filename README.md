@@ -19,7 +19,7 @@ We used the **[Market-1501 dataset](https://github.com/zhunzhong07/Market-1501)*
 - **Embedding Size**: 512-dimensional vector
 - **Loss Function**: Triplet Loss (using hard negative mining)
 - **Similarity Metric**: Cosine similarity
-- **Training Epochs**: 50+
+- **Training Epochs**: 20+
 - **Framework**: PyTorch
 
 ---
