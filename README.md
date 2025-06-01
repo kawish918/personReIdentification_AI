@@ -6,7 +6,7 @@ This project performs **Person Re-Identification (Re-ID)** using deep feature em
 
 ## 📁 Dataset
 
-We used the **[Market-1501 dataset](https://github.com/zhunzhong07/Market-1501)** which consists of:
+We used the **[Market-1501 dataset](https://www.kaggle.com/datasets/pengcw1/market-1501)** which consists of:
 - 751 training identities
 - 750 test identities
 - Images captured from 6 camera views
